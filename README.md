@@ -26,6 +26,7 @@
 ![pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+<br>
 ![Pydantic](https://img.shields.io/badge/Pydantic-%23ffffff.svg?style=for-the-badge&logo=Pydantic&logoColor=red)
 ![Pipeline](https://img.shields.io/badge/Pipeline-%23ffffff.svg?style=for-the-badge&logo=Pipeline&logoColor=red)
 ![Seaborn](https://img.shields.io/badge/Seaborn-%23ffffff.svg?style=for-the-badge&logo=Seaborn&logoColor=red)
