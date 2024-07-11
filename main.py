@@ -3,6 +3,7 @@ import dill
 from fastapi import FastAPI
 import pandas as pd
 from pydantic import BaseModel
+from typing import Optional
 
 
 app = FastAPI()
@@ -12,19 +13,19 @@ with open('models/best_pipe.pkl', 'rb') as file:
 
 class Form(BaseModel):
     session_id: str
-    utm_source: str | None = None
-    utm_medium: str | None = None
-    utm_campaign: str | None = None
-    utm_keyword: str | None = None
-    utm_adcontent: str | None = None
-    device_category: str | None = None
-    device_os: str | None = None
-    device_brand: str | None = None
-    device_model: str | None = None
-    device_screen_resolution: str | None = None
-    device_browser: str | None = None
-    geo_country: str | None = None
-    geo_city: str | None = None
+    utm_source: Optional[str] = None
+    utm_medium: Optional[str] = None
+    utm_campaign: Optional[str] = None
+    utm_keyword: Optional[str] = None
+    utm_adcontent: Optional[str] = None
+    device_category: Optional[str] = None
+    device_os: Optional[str] = None
+    device_brand: Optional[str] = None
+    device_model: Optional[str] = None
+    device_screen_resolution: Optional[str] = None
+    device_browser: Optional[str] = None
+    geo_country: Optional[str] = None
+    geo_city: Optional[str] = None
 
 
 class Prediction(BaseModel):
