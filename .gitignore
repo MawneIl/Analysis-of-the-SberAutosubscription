@@ -25,9 +25,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 
-data/
-!data/ga_hits.pkl
-!data/ga_sessions.pkl
+# My
 *.pptx
 *.pdf
 
