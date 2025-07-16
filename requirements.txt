@@ -8,3 +8,4 @@ pandas==1.5.3
 pydantic==1.10.6
 scikit-learn==1.2.2
 seaborn==0.13.2
+lightautoml==0.3.8b1

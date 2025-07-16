@@ -29,7 +29,7 @@ pip install requirements.txt
 ```
 5. Запустите приложение командой:
 ```bash
-uvicorn main:app --reload
+uvicorn main:app
 ```
 6. Запустите локальное приложение Postman, либо перейдите по <a href="https://web.postman.co/">ссылке</a> и создайте новый запрос.
 7. Выполните один из запросов.

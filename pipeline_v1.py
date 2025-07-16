@@ -14,6 +14,14 @@ from sklearn.model_selection import cross_val_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
+""""
+Версия 1.0
+Автор: Nail Mavliev
+Model: Логистическая регрессия, RandomForestClassifier (baseline)
+Тип: классификация
+Дата: 2023-10-01
+"""
+
 # variables:
 ''' Укажем путь к файлам проекта:
 # -> $PROJECT_PATH при запуске в Airflow
@@ -46,14 +54,17 @@ def df_load():
         df_sessions = dill.load(file)
 
     # создание списка сессий с определенным целевым событием
-    df_hits['target'] = df_hits.event_action.apply(lambda x: 1 if x in target_actions else 0)
+    df_hits['target'] = df_hits.event_action.apply(
+        lambda x: 1 if x in target_actions else 0)
     pivot_table = pd.pivot_table(df_hits, index=['session_id'], values=['target'],
-                                 aggfunc={'target': [lambda x: 0 if x.sum() == 0 else 1]}
+                                 aggfunc={'target': [
+                                     lambda x: 0 if x.sum() == 0 else 1]}
                                  ).reset_index(level=0)
     pivot_table.columns = ['session_id', 'target']
 
     # объединение данных
-    df = df_sessions.join(pivot_table.set_index('session_id'), on='session_id', how='inner')
+    df = df_sessions.join(pivot_table.set_index(
+        'session_id'), on='session_id', how='inner')
 
     return df
 
@@ -72,9 +83,11 @@ def create_features(df: pd.DataFrame) -> pd.DataFrame:
     df['utm_traffic'] = df.apply(
         lambda x: 'organic' if x.utm_medium in organic_traffic else 'paid', axis=1)
 
-    df['geo_from_russia'] = df.apply(lambda x: 1 if x.geo_country == "Russia" else 0, axis=1)
+    df['geo_from_russia'] = df.apply(
+        lambda x: 1 if x.geo_country == "Russia" else 0, axis=1)
 
-    df['geo_full'] = df.apply(lambda x: f'{x.geo_country}: {x.geo_city}', axis=1)
+    df['geo_full'] = df.apply(
+        lambda x: f'{x.geo_country}: {x.geo_city}', axis=1)
 
     return df
 
@@ -115,7 +128,8 @@ def pipeline():
 
     class_weight = {0: 1, 1: 33}
 
-    numerical_features = make_column_selector(dtype_include=['int64', 'float64'])
+    numerical_features = make_column_selector(
+        dtype_include=['int64', 'float64'])
     categorical_features = make_column_selector(dtype_include=object)
 
     numerical_transformer = Pipeline(steps=[
@@ -141,8 +155,10 @@ def pipeline():
     ])
 
     models = [
-        LogisticRegression(solver='liblinear', class_weight=class_weight, random_state=42),
-        RandomForestClassifier(class_weight=class_weight, n_jobs=-1, oob_score=True, random_state=42)
+        LogisticRegression(solver='liblinear',
+                           class_weight=class_weight, random_state=42),
+        RandomForestClassifier(class_weight=class_weight,
+                               n_jobs=-1, oob_score=True, random_state=42)
     ]
 
     best_score = .0
@@ -155,7 +171,8 @@ def pipeline():
         ])
 
         score = cross_val_score(pipe, x, y, cv=4, scoring='roc_auc')
-        logging.info(f'model: {type(model).__name__}, roc_auc_mean: {score.mean():.4f}, roc_auc_std: {score.std():.4f}')
+        logging.info(
+            f'model: {type(model).__name__}, roc_auc_mean: {score.mean():.4f}, roc_auc_std: {score.std():.4f}')
         if score.mean() > best_score:
             best_score = score.mean()
             best_pipe = pipe

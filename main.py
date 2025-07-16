@@ -5,9 +5,16 @@ import pandas as pd
 from pydantic import BaseModel
 from typing import Optional
 
+'''
+Доступные модели:
+- TabularAutoML_v2.pkl - модель созданная с помощью pipeline_v2.py
+- best_pipe.pkl - лучшая модель из pipeline_v1.py
+'''
+
+
 
 app = FastAPI()
-with open('models/best_pipe.pkl', 'rb') as file:
+with open('models/TabularAutoML_v2.pkl', 'rb') as file:     # Замените на актуальный путь к модели
     model = dill.load(file)
 
 
