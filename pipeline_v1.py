@@ -40,7 +40,7 @@ target_actions = ['sub_car_claim_click',
                   ]
 
 
-logging.basicConfig(level=logging.INFO, filename=f"{path}/logs/project_log.log", filemode="a",
+logging.basicConfig(level=logging.INFO, filename=f"{path}/logs/best_pipe.log", filemode="a",
                     format="%(asctime)s %(levelname)s %(message)s")
 
 

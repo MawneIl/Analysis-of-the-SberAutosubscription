@@ -7,14 +7,14 @@ from typing import Optional
 
 '''
 Доступные модели:
-- TabularAutoML_v2.pkl - модель созданная с помощью pipeline_v2.py
+- TabularAutoML.pkl - модель созданная с помощью pipeline.py
 - best_pipe.pkl - лучшая модель из pipeline_v1.py
 '''
 
 
 
 app = FastAPI()
-with open('models/TabularAutoML_v2.pkl', 'rb') as file:     # Замените на актуальный путь к модели
+with open('models/TabularAutoML.pkl', 'rb') as file:     # Замените на актуальный путь к модели
     model = dill.load(file)
 
 

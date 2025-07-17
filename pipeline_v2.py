@@ -43,7 +43,7 @@ CPU_LIMIT = 10
 CV = 5
 RS = 42
 
-logging.basicConfig(level=logging.INFO, filename=f"{path}/logs/project_log_v2.log", filemode="a",
+logging.basicConfig(level=logging.INFO, filename=f"{path}/logs/TabularAutoML.log", filemode="a",
                     format="%(asctime)s %(levelname)s %(message)s")
 
 class LightAutoMLWrapper(BaseEstimator, ClassifierMixin):
@@ -232,7 +232,7 @@ def pipeline():
     print('Saving model...')
     logging.info('Saving model...')
 
-    model_filename = f'{path}/models/{pipe["classifier"]._model_name()}_v2.pkl'
+    model_filename = f'{path}/models/{pipe["classifier"]._model_name()}.pkl'
 
     with open(model_filename, 'wb') as file:
         dill.dump({
